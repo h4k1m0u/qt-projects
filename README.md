@@ -1,5 +1,4 @@
 # Build projects
-----------------
 ### With QtCreator.
 - At the root of the `qt-projects` folder, create a build directory.
 - In QtCreator, click on the Projects button on the left, then set the Build Directory.
@@ -15,7 +14,13 @@ make
 
 
 # Qt notions
-------------
+### Update (end of 2023)
+- `Qt` examples use raw pointers partly for historical reasons; for compatibility with older versions, to support multiple platforms, and finally because Qt was released when there was no smart pointers.
+- Even with raw pointers, memory is managed hierarchically, i.e. deleting an object automatically destroys all its children.
+- In the cpp code, the UI communicates with the main cpp class based on the structure explained [here][ui].
+
+[ui]: https://doc.qt.io/qt-6/designer-using-a-ui-file.html#the-single-inheritance-approach
+
 ### QtWidgets lifetime
 - `QtWidget` are initialized with pointers (i.e. in the heap) since they need to exist for as long as the application is running.
 - Pointers to QWidget objectes are created in the heap with the keyword `new`. If they were created in the function's stack, they will be destroyed when its scope ends, which isn't practical since Qt's `slots` need to have access to these widgets.
